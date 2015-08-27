@@ -3,24 +3,57 @@ require 'pry'
 class GameMarks
 
   def initialize
-    @marks = ["X", "O"]
+    @x = "X"
+    @o = "O"
   end
 
-  def draw
-    @marks.sample
+  def markx
+    @x
   end
+
+  def marko
+    @o
+  end
+
 end
 
-class Game_card
+class GameCard
 
   def initialize
-    @gamecard = Array.new
+    @gamecard = ["X", "X", "X"]
+  end
+
+  def gamecard
+    puts "------------------------------------------------"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts "|#{@gamecard[0]}|#{@gamecard[1]}  | @gamecard[2] |"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts  "-----------------------------------------------"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts "| @gamecard[3] |  @gamecard[4]  | @gamecard[5] |"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts  "-----------------------------------------------"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts "| @gamecard[6] |  @gamecard[7]  | @gamecard[8] |"
+    puts "|              |                |              |"
+    puts "|              |                |              |"
+    puts  "-----------------------------------------------"
   end
 end
 
-player1_draw = Game_marks.new
-player2_draw = Game_marks.new
-player1 = player1_draw.draw
-player2 = player2_draw.draw
+# player1 = GameMarks.new
+# player2 = GameMarks.new
+
+# puts player1.markx
+# puts player2.marko
+
+card = GameCard.new
+puts card.gamecard
+
 
 binding.pry
