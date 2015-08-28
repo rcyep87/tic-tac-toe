@@ -1,4 +1,4 @@
-# require 'pry'
+ require 'pry'
 
 # class GameMarks
 
@@ -46,10 +46,24 @@ class GameCard
     puts  "-----------------------------------------------"
   end
 
-  def user_input_on_board(index, value)
-    @gamecard[index] = value.to_s
+  def user_input_on_board(index, x_or_o)
+    @gamecard[index] = x_or_o.to_s
   end
 end
+
+
+player_input = GameCard.new
+print "Where would you like to play? (0..8) and (X or O) > "
+place = gets.chomp.to_i
+x_or_o = gets.chomp
+player_input.user_input_on_board(place, x_or_o)
+player_input.gamecard
+
+print "Where would you like to play? (0..8) and (X or O) > "
+place = gets.chomp.to_i
+x_or_o = gets.chomp
+player_input.user_input_on_board(place, x_or_o)
+player_input.gamecard
 
 # card = GameCard.new - checks to see if spots on board have been assigned #'s'
 # puts card.gamecard
@@ -65,9 +79,7 @@ end
 # puts input.gamecard
 
 
-# print "Where would you like to play? (0..8) and (X or O) > "
-# input = gets.chomp
 
 
 
-# binding.pry
+ binding.pry
