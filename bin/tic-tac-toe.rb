@@ -1,26 +1,27 @@
-require 'pry'
+# require 'pry'
 
-class GameMarks
+# class GameMarks
 
-  def initialize
-    @x = "X"
-    @o = "O"
-  end
+#   def initialize
+#     @x = "X"
+#     @o = "O"
+#   end
 
-  def markx
-    @x
-  end
+#   def markx
+#     @x
+#   end
 
-  def marko
-    @o
-  end
+#   def marko
+#     @o
+#   end
 
-end
+# end
 
 class GameCard
 
   def initialize
-    @gamecard = ["X", "X", "X", "O", "O", "O", "O", "O", "O"]
+    @gamecard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @input
   end
 
   def gamecard
@@ -44,16 +45,29 @@ class GameCard
     puts "|              |                |              |"
     puts  "-----------------------------------------------"
   end
+
+  def user_input_on_board(index, value)
+    @gamecard[index] = value.to_s
+  end
 end
 
-# player1 = GameMarks.new
-# player2 = GameMarks.new
+# card = GameCard.new - checks to see if spots on board have been assigned #'s'
+# puts card.gamecard
 
-# puts player1.markx
-# puts player2.marko
+# input = GameCard.new
+# input.user_input_on_board(1, "X") => this logic puts X's and O's on the game board
+# puts input.gamecard => prints out an updated status of game board
+# input.user_input_on_board(8, "O")
+# puts input.gamecard
+# input.user_input_on_board(4, "X")
+# puts input.gamecard
+# input.user_input_on_board(7, "X")
+# puts input.gamecard
 
-card = GameCard.new
-puts card.gamecard
+
+# print "Where would you like to play? (0..8) and (X or O) > "
+# input = gets.chomp
 
 
-binding.pry
+
+# binding.pry
