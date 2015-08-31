@@ -1,4 +1,4 @@
- # require 'pry'
+# require 'pry'
 
 class GameCard
 
@@ -43,39 +43,44 @@ end
 
 class Player
 
+  attr_accessor :x_or_o
+  attr_accessor :place
+
   def initialize
     @x_or_o
     @place
   end
 
   def player_prompt
-    player_input = GameCard.new
-      puts "Please choose an (X) or (O) to play, Player1! > "
-      x_or_o = gets.chomp.upcase
+    game_card = GameCard.new
+    puts "Please choose an (X) or (O) to play, Player1! > "
 
-    while x_or_o != ("X" || "O")
-      puts "Please actually choose an (X) or (O) to play, Player1! > "
+    x_or_o = gets.chomp.upcase
+    until x_or_o == "X" || x_or_o == "O"
+      puts "Please actually choose an (X) or (O) you chose #{x_or_o.inspect} to play, Player1! > "
       x_or_o = gets.chomp.upcase
     end
 
-    x = 0
-    while x < 8 && x >= 0
-      if player_input.array_length > 9 # makes sure you're playing within the matrix
-        puts "pick another spot to play on! (0..8)"
-        player_input.gamecard
+
+    # x = 0
+    # # number of times allowed to play on the board
+    # if game_card.array_length > 9 || game_card.array_length < 0 # makes sure you're playing within the matrix
+    #   game_card.gamecard
+    #   puts "Pick another spot to play on! (Choose between 0 and 8) > "
+    #   place = gets.chomp.to_i
+    #   game_card.user_input_on_board(place, x_or_o)
+    #   x += 1
+    # else
+      game = Game.new
+      until game.winning_combo(game_card.gameboard)
+        game_card.gamecard
         puts "Where would you like to play? (Choose between 0 and 8) > "
         place = gets.chomp.to_i
-        player_input.user_input_on_board(place, x_or_o)
-        puts gamecard
-        x += 1
-      else
-        player_input.gamecard
-        puts "Where would you like to play? (Choose between 0 and 8) > "
-        place = gets.chomp.to_i
-        player_input.user_input_on_board(place, x_or_o)
+        #check that place is on game_card
+        game_card.user_input_on_board(place, x_or_o)
         # puts player_input.gameboard - spits out updated gameboard array
-        x += 1
-      end
+        # x += 1
+      # end
     end
   end
 end
@@ -85,9 +90,14 @@ class Game
   def initialize
   end
 
-  def winning_combo
-    choice = GameCard.new
-    puts choice.choice_array
+  def winning_combo(gameboard_array)
+    case
+    when (gameboard_array[0] == "X" && gameboard_array[1] == "X" && gameboard_array[2] == "X") ||
+         (gameboard_array[0] == "O" && gameboard_array[1] == "O" && gameboard_array[2] == "O")
+      puts "You have won tic-tac-toe!"
+    else
+      puts "Keep going!"
+    end
   end
 
 end
